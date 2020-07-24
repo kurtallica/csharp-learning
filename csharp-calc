@@ -6,9 +6,11 @@ namespace Calculator
     {
         static void Main(string[] args)
         {
+
             // Declare variables then initialise to zero.
             int num1 = 0;
             int num2 = 0;
+            bool done = false;
 
             // Display title as the c~ console calculator app.
             Console.WriteLine("Console Calculator in C#\r");
@@ -36,19 +38,71 @@ namespace Calculator
                 case "a":
                     Console.WriteLine($"Your Result: {num1} + {num2} = " + (num1 + num2 ));
                     break;
-                case "b":
+                case "s":
                     Console.WriteLine($"Your result: {num1} - {num2} = " + (num1 - num2));
                     break;
-                case "c":
+                case "m":
                     Console.WriteLine($"Your result: {num1} x {num2} = " + (num1 * num2));
                     break;
                 case "d":
                     Console.WriteLine($"Your Result: {num1} ÷ {num2} = " + (num1 / num2));
                     break;
             }
-            //Wait for the user to respond before closing.
-            Console.Write("Press any key to close the Calculator Console app...");
-            Console.ReadKey();
+            //While loop to restart the calculator, exit the calculator or tell the user off for not following the rules!
+            while (!done)
+            {
+                Console.WriteLine("Press Y to restart, N to Exit the Calculator Console app...");
+                string restart = Console.ReadLine();
+                if (restart == "Y")
+                {
+                    // Display title as the c~ console calculator app.
+                    Console.WriteLine("Console Calculator in C#\r");
+                    Console.WriteLine("------------------------\n");
+
+                    // Ask the user to type the first number.
+                    Console.WriteLine("Please enter a number");
+                    num1 = Convert.ToInt32(Console.ReadLine());
+
+                    // Ask the user to type the second number 
+                    Console.WriteLine("Please enter another number");
+                    num2 = Convert.ToInt32(Console.ReadLine());
+
+                    // Ask the user to choose an option
+                    Console.WriteLine("Choose an option from the following:");
+                    Console.WriteLine("\ta - Add");
+                    Console.WriteLine("\ts - Subtract");
+                    Console.WriteLine("\tm - multiply");
+                    Console.WriteLine("\td - divide");
+                    Console.Write("Your Option? ");
+
+                    // Use a switch statement to do the math
+                    switch (Console.ReadLine())
+                    {
+                        case "a":
+                            Console.WriteLine($"Your Result: {num1} + {num2} = " + (num1 + num2));
+                            break;
+                        case "s":
+                            Console.WriteLine($"Your result: {num1} - {num2} = " + (num1 - num2));
+                            break;
+                        case "m":
+                            Console.WriteLine($"Your result: {num1} x {num2} = " + (num1 * num2));
+                            break;
+                        case "d":
+                            Console.WriteLine($"Your Result: {num1} ÷ {num2} = " + (num1 / num2));
+                            break;
+                    }
+                }
+                else if (restart == "N")
+                {
+                    Console.WriteLine("Exiting...");
+                    done = true;
+                }
+                else
+                {
+                    Console.WriteLine("Please enter a valid key!");
+                    continue;
+                }
+            }
         }
     }
 }
